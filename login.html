@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="login.js" defer></script>
   </head>
   <body>
     <main class="card">
       <h1>Login</h1>
 
-      <form action="/login" method="post">
+      <form id="login-form" action="/login" method="post" novalidate>
         <p>
           <label for="username">Username</label>
           <input
@@ -18,18 +19,32 @@
             id="username"
             name="username"
             autocomplete="username"
+            aria-describedby="username-error"
             required
           />
+          <small id="username-error" class="error" aria-live="polite"></small>
         </p>
         <p>
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autocomplete="current-password"
-            required
-          />
+          <span class="password-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              aria-describedby="password-error"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              aria-controls="password"
+              aria-pressed="false"
+            >
+              Show
+            </button>
+          </span>
+          <small id="password-error" class="error" aria-live="polite"></small>
         </p>
         <p>
           <input type="checkbox" id="remember" name="remember" />
