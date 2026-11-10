@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MAX_AGE, MIN_AGE, type User, type UserInput } from "./types";
+import { MAX_AGE, MIN_AGE, type User, type UserInput } from "../types";
 
 interface Props {
   // The user being edited, or null when creating a new one
@@ -21,7 +21,11 @@ function validate(name: string, age: string): FormErrors {
   const parsed = Number(age);
   if (age.trim() === "") {
     errors.age = "Age is required.";
-  } else if (!Number.isInteger(parsed) || parsed < MIN_AGE || parsed > MAX_AGE) {
+  } else if (
+    !Number.isInteger(parsed) ||
+    parsed < MIN_AGE ||
+    parsed > MAX_AGE
+  ) {
     errors.age = `Age must be a whole number between ${MIN_AGE} and ${MAX_AGE}.`;
   }
   return errors;
